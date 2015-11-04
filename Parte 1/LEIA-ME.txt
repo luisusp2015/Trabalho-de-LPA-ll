@@ -1,0 +1,19 @@
+DADOS GERAIS:
+	Esse programa irá realizar a construção de uma arvore binária de busca na liguagem C;
+essa árvore permite as operações de :
+	-Inserção
+	-Remoção
+	-Impressão
+	-Busca
+	-Impressão em labelled breackting
+
+O programa funciona baseado em funções que realizam cada operação disponível;
+as funções usam o conceito básico de árvore em C para funcionar;
+
+COMO USAR:
+	Para utilizar o programa,primeiramente , é necessário construir a arvore com os dados desejados de serem armazenados;
+em seguida será  possível realizar qualquer outra operação que o programa oferece , bastando entrar com o número da operação desejada;
+Primeiramente , selecione a opção de inserção;
+Depois indique o numero de entradas que serão colocadas na árvore;
+Em seguide entre com o valor da raiz e depois com os outros valores da árvore;
+Assim , uma árvore será criada pelos valores entrados pelo usuário;	
