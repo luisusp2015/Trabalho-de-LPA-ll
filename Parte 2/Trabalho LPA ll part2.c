@@ -14,25 +14,24 @@ int grau = 0;
 
 // cria o tipo  "arvore" de modo "global" , onde o s galhos são os "parentes da raiz"
 
-void insertion(struct arvore* no, int chave,char *nome);//prototipo de função que insere membros na arvore;
-void remocao(struct arvore *no, int chave) ; //prototipo da função de remoção;
-void findgeracao(struct arvore *no, int b); // prototipo da função que imprime membros de uma mesma geração;
+_Bool comparastring(char*string1,char*string2); //função que compara strings e retorna verdadeiro ou falso 
+void insercao(struct arvore *root,char*membro1,char*membro2,char*membro3);//prototipo de função que insere membros na arvore;
+void findgeracao(struct arvore *bo, int b); // prototipo da função que imprime membros de uma mesma geração;
 void antepassados(struct arvore *nome, char *filho);//prototipo da função que imprime os antepassados;
 void Labelled(struct arvore *jo); // prototipo da função que imprime em labelled breckting;
 void passandostring(char*copiardaqui,char *colaraki);//prototipo da funçção que copia strings
 
 
-
 main(){
 	int comando,tuplas,grau,d,t,index,exit,op,bus,j,keys,ger;
 	j=0;
-	char filho[20] ;char pai[20];char mae[20];
+	char filho[20] ;char pai[20];char mae[20];char name[20];
 	int i = 0 ; // contadorA
 
 	printf("                             ARVORE EM C\n                         RELACIONADO PARENTESCOS                  \n");
-	printf("Digite o numero do item desejado para iniciar o comando sobre a arvore:\n\n1-Insercao\n2-Remocao\n3-Imprime Geracao\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\"\n\n");
+	printf("Digite o numero do item desejado para iniciar o comando sobre a arvore:\n\n1-Insercao\n2-Antepassados\n3-Imprime Geracao\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\"\n\n");
 	scanf("%d",&comando);
-	while(comando>5 || comando<1){
+	while(comando!=1){
 		system("cls");
 		printf("O valor entrado corresponde a nenhuma das operacoes\npor favor digite um valor correspondente a uma operacao\n");
 		scanf("%d",&comando);
@@ -55,10 +54,7 @@ main(){
 		scanf("%s",mae);
 	    raiz->graupart = 0; // faz o primeiro grua de parentesco , o da raiz , ser 0;
 		passandostring(filho,raiz->unidade);	 // esta função irá copiar o "conteudo" de filho para raiz->nome;evitando o uso constante dos ciclos;
-		keys = tuplas;
-		raiz->chave = keys; // cria uma chave para a raiz
-		;//chama a função insercao para inserir a tupla na arvore;
-		
+		insercao(raiz,filho,pai,mae);
 		printf("Entre com os valores que serao inseridos separando-os por espaco:\n\n");
 				
 		for(i;i<tuplas-1;i++){ // faza inserção de valores entrados pelo usuário;
@@ -66,19 +62,15 @@ main(){
     		scanf("%s",filho); 
 			scanf("%s",pai);
 			scanf("%s",mae);
-			
-    		insertion(raiz,j,filho); // será a "nova raiz"
-    		insertion(raiz,keys-2,pai); // atribui chaves para a função;
-    		insertion(raiz,keys*3,mae);
-    		j++; //
-    		keys++;// irá criar novas chaves a cada ciclo;
+			raiz->graupart ++;
+    		insercao(raiz,filho,pai,mae);//chama a função para inserir dois novos membros relacionados a um membro já existente;
     		
 			 
 		}
 		
 		printf("Os valores foram armazenados com sucesso!");
 		
-		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Remocao\n3-Imprime Geracao\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
+		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		
 		if(t==2){
@@ -104,7 +96,7 @@ main(){
 	if(comando == 2){ // irá remover valores da arvore;
 		index = 2;//cria função e a faz recursiva caso o usuário queira remover mais de um valor  da arvore;
 		
-		printf("\n\aEscolha uma das opcoes:\n1-Sair\n2-Remocao\n3-Busca\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
+		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		
 		if(t==2){
@@ -129,7 +121,7 @@ main(){
 		system("cls");
 		index = 3;		
 		
-		printf("\n\aEscolha uma das opcoes:\n1-Sair\n2-Remocao\n3-Busca\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
+		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		if(t==2){
 			system("cls");
@@ -153,7 +145,7 @@ main(){
 		system("cls");
 		index = 4;
 		
-		printf("\n\aEscolha uma das opcoes:\n1-Sair\n2-Remocao\n3-Busca\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
+		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		if(t==2){
 			system("cls");
@@ -178,7 +170,7 @@ main(){
 		system("cls");
 		index = 5;
 		
-		printf("\n\aEscolha uma das opcoes:\n1-Sair\n2-Remocao\n3-Busca\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
+		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		if(t==2){
 			system("cls");
@@ -200,14 +192,14 @@ main(){
 	}
  switch (index){
 	case 2:
-		printf("Digite o valor o qual deseja remover: ");
-		scanf("%d",&exit);
+		printf("Digite o membro o qual deseja conhecer os seus antepassados:\n ");
+		scanf("%s",name);
+		antepassados(raiz, name);
 		
-		printf("\n\nO valor foi removido com sucesso!");
 		break;		
 	case 3:
 	    printf("Digite a geracao cujos membros deseja vizualizar: ");
-	    scanf("%d",ger);
+	    scanf("%d",&ger);
 	    findgeracao(raiz,ger);
 	    
 		break;		
@@ -225,55 +217,65 @@ main(){
 	
 }
 
-  
 
-void findgeracao(struct arvore *no, int b){ //usando estrutura do "emordem";
-	struct arvore *g = no;
-	if(g!=NULL){
-		
-		findgeracao(no->pai,b);
-		if(no->graupart == b){
-			printf("\n\n %s \n\nPertencem a mesma geracao.",no->unidade);
+void findgeracao(struct arvore *bo, int b){ //usando estrutura do "emordem";
+
+	if(bo!=NULL){
+		findgeracao(bo->pai,b);
+		if(bo->graupart == b){
+			printf("\n\n %s \n\nPertence a essa geracao.",bo->unidade);
 		}
-		findgeracao(no->mae,b);
-		
+		findgeracao(bo->mae,b);
 	}
 
 }
 
+void insercao(struct arvore *root,char*membro1,char*membro2,char*membro3){ // se insere a raiz da arvore , o nome do membro 1 , nome do membro q  será a nova raiz, membro 2 meembro que será inserido;
+	
+	if(root!= NULL){
+		
+		if(comparastring(root->unidade,membro1)){//comparastring(root->unidade,membro1)
+		
+			struct arvore *novopai=(struct arvore*)malloc(sizeof(struct arvore)); //insere o novo  pai;como parente de membro 1
+			passandostring(membro2,novopai->unidade);
+			root->pai = novopai;
+			novopai->pai=NULL;
+			novopai->mae=NULL;
+			novopai->graupart = root->graupart+1;
+		
+			struct arvore *novamae=(struct arvore*)malloc(sizeof(struct arvore)); // insere a nova mae; como parente de membro 1
+			passandostring(membro3,novamae->unidade);
+			root->mae = novamae;
+			novamae->pai=NULL;
+			novamae->mae=NULL;
+			novamae->graupart = root->graupart+1;
+			
+			printf("\nEssa Tupla foi inserida com sucesso!\n\n");
+		}else{	
+	
+			insercao(root->pai,membro1,membro2,membro3);
+			insercao(root->mae,membro1,membro2,membro3);
+		}
+		
+	}
+	
+}
 
-void insertion(struct arvore* no, int chave,char *nome){ //função de inserção em arvores que usa chaves;
-    struct arvore *p = no;
-    struct arvore *paii = NULL;
-    int grau;
-    grau = no->graupart;
-     
-    while(p != NULL) {
-        paii = p;
-        if (p->chave >= chave) {
-            p = p->pai;
-        } else {
-            p= p->mae;
-        }
-    }
- 
-    struct arvore*novo=(struct arvore*)malloc(sizeof(struct arvore)); // cria novas caixas
-    novo->chave = chave;
-	novo->pai =NULL;
-	novo->mae = NULL; 
-	passandostring(nome,novo->unidade);
-	novo->graupart = grau+1;  //aumenta um grau de parentesco a cada ciclo;  
 
-     
-    if(paii->chave >= novo->chave){
-        paii->pai=novo;
-    }   
-    else{
-        paii->mae=novo;
-        }
-  
-} 
-
+_Bool comparastring(char*string1,char*string2){
+	int i = 0;
+	
+	while(string1[i]==string2[i] && string1[i]!='\0'&& string2[i]!='\0'){
+		i++;
+	}
+	
+	if(string1[i] =='\0' && string2[i]=='\0'){
+		return 1;
+	}else{
+		return 0;
+	}
+		
+}
 
 void passandostring(char*copiardaqui,char *colaraki){ // função para copiar strings;
 	
@@ -288,9 +290,9 @@ void passandostring(char*copiardaqui,char *colaraki){ // função para copiar stri
 }
 
 void antepassados(struct arvore *nome, char *filho){
-	if(pessoa!=NULL){
+	if(nome!=NULL){
 		if (strcmp(nome->unidade, filho) != 0){//strcmp função que ira comparar o conteudo das duas strings e consequentemente com o valor 0;
-			printf("\n %s \n", pessoa->unidade);
+			printf("\n %s \n", nome->unidade);
 		}
 		antepassados(nome->mae, filho);
 		antepassados(nome->pai, filho);
@@ -298,7 +300,7 @@ void antepassados(struct arvore *nome, char *filho){
 }
 
 
-void grauparentesco(struct arvore *raiz, char *noh, char *no){
+/*void grauparentesco(struct arvore *raiz, char *noh, char *no){
 	struct arvore *a = select(raiz, noh);
 	struct arvore *b = select(a, no);
 	int grau;
@@ -309,7 +311,9 @@ void grauparentesco(struct arvore *raiz, char *noh, char *no){
 		printf("\n%s e %s nao possuem garu de parentesco (grau = 0)\n", noh, no);
 	}
 	else{
-		grau = b->grau - a->grau;
+		grau = b->graupart - a->graupart;
 		printf("\nO grau de parentesco entre %s e %s eh %d\n", noh, no, grau);
 	}
-}
+}*/
+
+
