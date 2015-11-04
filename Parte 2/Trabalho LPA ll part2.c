@@ -20,7 +20,7 @@ void findgeracao(struct arvore *bo, int b); // prototipo da função que imprime m
 void antepassados(struct arvore *nome, char *filho);//prototipo da função que imprime os antepassados;
 void Labelled(struct arvore *jo); // prototipo da função que imprime em labelled breckting;
 void passandostring(char*copiardaqui,char *colaraki);//prototipo da funçção que copia strings
-
+void bracketing(struct arvore *nome);
 
 main(){
 	int comando,tuplas,grau,d,t,index,exit,op,bus,j,keys,ger;
@@ -208,7 +208,7 @@ main(){
 		break;
 	case 5:
 		printf("A impressao em \"Labelled Bracketing\" serah :\n\n");
-		
+		bracketing(raiz);
 		break;	
 
 
@@ -299,6 +299,18 @@ void antepassados(struct arvore *nome, char *filho){
 	}
 }
 
+void bracketing(struct arvore *nome){
+	if(nome!=NULL)
+	{
+		printf("[%s", nome->unidade);
+		bracketing(nome->mae);
+		printf("]");
+		bracketing(nome->pai);
+		printf("]");
+	}
+	else 
+	printf("[");
+}
 
 /*void grauparentesco(struct arvore *raiz, char *noh, char *no){
 	struct arvore *a = select(raiz, noh);
