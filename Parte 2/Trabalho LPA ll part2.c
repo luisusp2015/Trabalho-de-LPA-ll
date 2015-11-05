@@ -23,6 +23,7 @@ void Labelled(struct arvore *nome);// prototipo da função que imprime em labelle
 struct arvore *select(struct arvore *no, char *filho);
 int retornagrau(struct arvore * no,char*membro);
 
+
 main(){
 	int comando,tuplas,grau,d,t,index,exit,op,bus,j,keys,ger,grauu;
 	j=0;
@@ -208,13 +209,13 @@ main(){
 		printf("Digite , separando por espaco, os nomes que deseja verificar\no grau de parentesco\n");
 		scanf("%s",ment1);
 		scanf("%s",ment2);
-		grauu = retornagrau(raiz,ment2) - retornagrau(raiz,ment1);
-		if(grau<0){
-			
-			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,grauu);
-		}else{
+			grauu = retornagrau(raiz,ment1) - retornagrau(raiz,ment2);
+			if(grauu<0){			
 			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,-grauu);
-		}
+			}else{
+			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,grauu);
+			}
+		
 		break;
 	case 5:
 		printf("A impressao em \"Labelled Bracketing\" serah :\n\n");
@@ -322,41 +323,7 @@ void Labelled(struct arvore *nome){
 	printf("[");
 }
 
-/*void grauparentesco(struct arvore *raiz, char *noh, char *no){
-	struct arvore *a = select(raiz, noh);
-	struct arvore *b = select(a, no);
-	int grau;
-	if(a == -2){
-		printf("\n%s e %s nao possuem garu de parentesco (grau = 0)\n", noh, no);
-	}
-	else if (b == -2){
-		printf("\n%s e %s nao possuem garu de parentesco (grau = 0)\n", noh, no);
-	}
-	else{
-		grau = b->graupart - a->graupart;
-		printf("\nO grau de parentesco entre %s e %s eh %d\n", noh, no, grau);
-	}
-}
 
-struct arvore *select(struct arvore *no, char *filho){
-	struct arvore *end = (struct arvore *)-2;
-	if (no != NULL)
-	{
-		if (strcmp(filho, no->unidade) == 0)
-		{
-			end = no;
-		}
-		if (end == -2)
-		{
-			end = select(no->mae, filho);
-		}
-		if (end == -2)
-		{
-			end = (select(no->pai, filho));
-		}
-	}
-	return (end);	
-}*/
 
 
 int retornagrau(struct arvore * no,char*membro){
