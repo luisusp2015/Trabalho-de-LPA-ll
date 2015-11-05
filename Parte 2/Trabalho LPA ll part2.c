@@ -17,19 +17,20 @@ int grau = 0;
 _Bool comparastring(char*string1,char*string2); //função que compara strings e retorna verdadeiro ou falso 
 void insercao(struct arvore *root,char*membro1,char*membro2,char*membro3);//prototipo de função que insere membros na arvore;
 void findgeracao(struct arvore *bo, int b); // prototipo da função que imprime membros de uma mesma geração;
-void antepassados(struct arvore *nome, char *filho);//prototipo da função que imprime os antepassados;
-void Labelled(struct arvore *jo); // prototipo da função que imprime em labelled breckting;
+void antepassados(struct arvore *nome, char *filho);//prototipo da função que imprime os antepassados;//
 void passandostring(char*copiardaqui,char *colaraki);//prototipo da funçção que copia strings
-void bracketing(struct arvore *nome);
+void Labelled(struct arvore *nome);// prototipo da função que imprime em labelled breckting;
+struct arvore *select(struct arvore *no, char *filho);
+int retornagrau(struct arvore * no,char*membro);
 
 main(){
-	int comando,tuplas,grau,d,t,index,exit,op,bus,j,keys,ger;
+	int comando,tuplas,grau,d,t,index,exit,op,bus,j,keys,ger,grauu;
 	j=0;
-	char filho[20] ;char pai[20];char mae[20];char name[20];
+	char filho[20] ;char pai[20];char mae[20];char name[20];char ment1[20];char ment2[20];
 	int i = 0 ; // contadorA
 
 	printf("                             ARVORE EM C\n                         RELACIONADO PARENTESCOS                  \n");
-	printf("Digite o numero do item desejado para iniciar o comando sobre a arvore:\n\n1-Insercao\n2-Antepassados\n3-Imprime Geracao\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\"\n\n");
+	printf("Digite o numero do item desejado para iniciar o comando sobre a arvore:\n\n1-Insercao\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\"\n\n");
 	scanf("%d",&comando);
 	while(comando!=1){
 		system("cls");
@@ -91,8 +92,7 @@ main(){
 		}
 
 	}
-	
-	
+
 	if(comando == 2){ // irá remover valores da arvore;
 		index = 2;//cria função e a faz recursiva caso o usuário queira remover mais de um valor  da arvore;
 		
@@ -143,8 +143,8 @@ main(){
 	}
 	if(comando == 4){
 		system("cls");
-		index = 4;
 		
+	    index = 4;
 		printf("\n\n\aEscolha uma das opcoes:\n1-Sair\n2-Antepassados\n3-Imprime Geracao\n4-Grau de Parentesco\n5-Impressao da arvore em \"labelled bracketing\" \n ");//opções para o usuário realizar outra ação usando o "switch case";
 		scanf("%d",&t);
 		if(t==2){
@@ -190,6 +190,7 @@ main(){
 		}
 		
 	}
+	
  switch (index){
 	case 2:
 		printf("Digite o membro o qual deseja conhecer os seus antepassados:\n ");
@@ -204,11 +205,20 @@ main(){
 	    
 		break;		
 	case 4:
-	
+		printf("Digite , separando por espaco, os nomes que deseja verificar\no grau de parentesco\n");
+		scanf("%s",ment1);
+		scanf("%s",ment2);
+		grauu = retornagrau(raiz,ment2) - retornagrau(raiz,ment1);
+		if(grau<0){
+			
+			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,grauu);
+		}else{
+			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,-grauu);
+		}
 		break;
 	case 5:
 		printf("A impressao em \"Labelled Bracketing\" serah :\n\n");
-		bracketing(raiz);
+		Labelled(raiz);
 		break;	
 
 
@@ -299,13 +309,13 @@ void antepassados(struct arvore *nome, char *filho){
 	}
 }
 
-void bracketing(struct arvore *nome){
+void Labelled(struct arvore *nome){
 	if(nome!=NULL)
 	{
 		printf("[%s", nome->unidade);
-		bracketing(nome->mae);
+		Labelled(nome->mae);
 		printf("]");
-		bracketing(nome->pai);
+		Labelled(nome->pai);
 		printf("]");
 	}
 	else 
@@ -326,6 +336,41 @@ void bracketing(struct arvore *nome){
 		grau = b->graupart - a->graupart;
 		printf("\nO grau de parentesco entre %s e %s eh %d\n", noh, no, grau);
 	}
+}
+
+struct arvore *select(struct arvore *no, char *filho){
+	struct arvore *end = (struct arvore *)-2;
+	if (no != NULL)
+	{
+		if (strcmp(filho, no->unidade) == 0)
+		{
+			end = no;
+		}
+		if (end == -2)
+		{
+			end = select(no->mae, filho);
+		}
+		if (end == -2)
+		{
+			end = (select(no->pai, filho));
+		}
+	}
+	return (end);	
 }*/
+
+
+int retornagrau(struct arvore * no,char*membro){
+	if(no!=NULL){
+		if(comparastring(no->unidade,membro)){
+			return no->graupart;
+		}else{
+			retornagrau(no->pai,membro);
+			retornagrau(no->mae,membro);
+		}
+	}
+	
+}
+
+
 
 

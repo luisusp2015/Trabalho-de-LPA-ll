@@ -26,9 +26,9 @@ main(){
 	printf("                             ARVORE EM C\n                         ARMAZENANDO INTEIROS                  \n");
 	printf("Digite o numero do item desejado para iniciar o comando sobre a arvore:\n\n1-Insercao\n2-Remocao\n3-Busca\n4-Impressao\n5-Impressao da arvore em \"labelled bracketing\"\n\n");
 	scanf("%d",&comando);
-	while(comando>5 || comando<1){
+	while(comando!=1){
 		system("cls");
-		printf("O valor entrado corresponde a nenhuma das operacoes\npor favor digite um valor correspondente a uma operacao\n");
+		printf("O valor entrado deve corresponder a operacao de insercao,\npois a arvore ainda nao foi criada\npor favor digite um valor correspondente a uma operacao\n");
 		scanf("%d",&comando);
 	}//criou-se um tipo de menu para o usuário
 	

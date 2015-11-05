@@ -1,0 +1,56 @@
+DADOS GERAIS:
+Esse programa irá realizar a construção de uma arvore binária de busca na liguagem C;
+essa árvore permite as operações de :
+	-Inserção
+	-Remoção
+	-Impressão
+	-Busca
+	-Impressão em labelled breackting
+
+O programa funciona baseado em funções que realizam cada operação disponível;
+as funções usam o conceito básico de árvore em C para funcionar;
+
+COMO USAR:
+Para utilizar o programa,primeiramente , é necessário construir a arvore com os dados desejados de serem armazenados;
+em seguida será  possível realizar qualquer outra operação que o programa oferece , bastando entrar com o número da operação desejada;
+Primeiramente , selecione a opção de inserção;
+Depois indique o numero de "tuplas"(grupos de 3 membros) que serão colocadas na árvore;
+Em seguide entre com o valor da primeira tupla.O valor da primeira tupla são os nomes dos membros que formam essa tupla.Depois com os outros valores da árvore, as outras tuplas a serem inseridas;
+Assim , uma árvore será criada pelos valores entrados pelo usuário;
+Para contruir relações entre os membros é necessário colocar em primeira ordem o nome que terá os outros dois nomes entrados como "galhos".
+Exemplo:
+
+/*o usurario irá entrar com 2 tuplas
+-- eu pai mae (primeira tupla)
+entra com a segunda tupla colocando primeiro a nova "raiz":
+-- pai avoh avo;
+
+***Assim avo e avoh estarão relacionados a pai,que está relacionado a eu.*/
+
+COMO FUNCIONA:
+O prgrama funciona baseado em funções que executam cada uma das tarefas oferecidas no menu,quando ele entra com o numero da ação aciona uma comando switch que irá chamar a função correspondente;
+as funções e seus respectivos modos de funcionamento estão enunciados a seguir:
+
+_Bool comparastring(char*string1,char*string2); //função que compara strings e retorna verdadeiro ou falso 
+	Essa função irá servir para retornar "true" caso as strings passadas a função sejam verdadeiras e "false" caso sejam diferentes.Essa função funciona baseada em um ciclo while  q irá ler a string.
+
+
+void insercao(struct arvore *root,char*membro1,char*membro2,char*membro3);//prototipo de função que insere membros na arvore;
+	Essa função está encarregada de inserir novos membros na arvore.Para isso ela irá utilizar uma estrutura parecida com o preordem para percorrer a arvore e achar a "chave" que será o primeiro membro da nova tupla que
+	o usuário entrou.Essa função depende de outras duas funções : "passandostrig" e "comparastring";
+
+void findgeracao(struct arvore *bo, int b); // prototipo da função que imprime membros de uma mesma geração;
+	Essa função está encarregada de procurar e imprimir membros de uma mesma geração,paraisto ela utiliza a base do "em ordem" para percorrer a arvore e imprimir aqueles membros com a geração desejada;
+
+
+void antepassados(struct arvore *nome, char *filho);//prototipo da função que imprime os antepassados;
+	Essa função imprime os antepassados de um determinado membro.Ela funciona baseada no meio de percorrer a arvore "preordem" e assim , imprime os membros que respeitam a condição imposta;
+
+void Labelled(struct arvore *jo); // prototipo da função que imprime em labelled breckting;
+	Essa função irá imprimir a arvore de forma Labelled breckting , utilizando ,novamente,o conceito preordem;
+
+void passandostring(char*copiardaqui,char *colaraki);//prototipo da funçção que copia strings
+	Essa função irá realizar  a copia de um valor string para outra variável string.
+
+int retornagrau(struct arvore * no,char*membro);
+	Essa função fica encarregada de retornau qual o valor de "graupart" dos membros inseridos, o grau de parentesco entre os membros será a diferença entre os valores de "graupart";	
