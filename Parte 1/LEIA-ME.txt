@@ -31,3 +31,26 @@ void preordem(struct arvore *po);
 void emordem(struct arvore *lo);
 struct arvore*busca(struct arvore*ho, int chave); //função de busca na arvore
 void Labelled(struct arvore *jo); //função de impressao;
+
+
+EXEMPLO DE FUNCIONAMENTO:
+
+
+1- primeiro ele irá selecionar a opção inserção:nº"1";
+2- O usuário irá entrar com 3 valores;Digitando "3" para a quantidade;
+3- O usuário irá entra com um primeiro valor dos 3 que serão armazenados , esse valor será a raiz: nº"12";
+4- O usuário  irá entra com os outros 2 valores a serem armazenados , separando-os por espaço:" 2 3 ";
+5- O programa irá exibir uma mensagem de exito da operação e mais 4 opções de ação:
+	sair:
+		O programa irá finalizar;
+	remoção:
+		O programa irá pedir para o usuário entrar com o valor a ser removido:Ex:"3";
+		Desse modo, os novos valores na arvore serão :"2,12"
+	busca:
+		O programa irá pedir para o usuário entrar com o valor a ser buscado:Ex:"12";
+		Se o valor existir ele irá retornar uma mensagem de que o valor está inserido na árvore  no exemplo:"O valor existe na arvore";
+
+	impressão
+		O programa irá oferecer 3 opções de impressão :" posordem : 12 2 3;pre ordem: 3 2 12; em ordem: 2 3 12;
+	impressão em labelled breckting;
+                Nessa opção o programa irá imprimir:[12[2[][3[][]]][]

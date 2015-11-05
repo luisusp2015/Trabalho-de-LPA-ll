@@ -208,7 +208,7 @@ main(){
 		Labelled(raiz);
 		break;	
 
-
+       getch();
 		
 }
 	

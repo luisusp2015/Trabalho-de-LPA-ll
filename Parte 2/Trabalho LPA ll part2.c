@@ -54,7 +54,7 @@ main(){
 		scanf("%s",filho); // armazena em variaáveis "temporárias" os "nomes" de cada unidade;
 		scanf("%s",pai);
 		scanf("%s",mae);
-	    raiz->graupart = 0; // faz o primeiro grua de parentesco , o da raiz , ser 0;
+	    raiz->graupart = 0 ; // faz o primeiro grua de parentesco , o da raiz , ser 0;
 		passandostring(filho,raiz->unidade);	 // esta função irá copiar o "conteudo" de filho para raiz->nome;evitando o uso constante dos ciclos;
 		insercao(raiz,filho,pai,mae);
 		printf("Entre com os valores que serao inseridos separando-os por espaco:\n\n");
@@ -196,7 +196,9 @@ main(){
 	case 2:
 		printf("Digite o membro o qual deseja conhecer os seus antepassados:\n ");
 		scanf("%s",name);
+		system("cls");
 		antepassados(raiz, name);
+		printf("Serao os antepassados");
 		
 		break;		
 	case 3:
@@ -212,9 +214,14 @@ main(){
 			grauu = retornagrau(raiz,ment1) - retornagrau(raiz,ment2);
 			if(grauu<0){			
 			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,-grauu);
-			}else{
-			printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,grauu);
+			}else if(grauu==0){
+				printf("Nao existe parentesco entre %s e %s ,assim o grau eh %d",ment1,ment2,grauu);
+				}else{
+				printf("O grau de parentesco entre %s e %s eh %d",ment1,ment2,grauu);
 			}
+			
+			 
+			
 		
 		break;
 	case 5:
@@ -252,14 +259,14 @@ void insercao(struct arvore *root,char*membro1,char*membro2,char*membro3){ // se
 			root->pai = novopai;
 			novopai->pai=NULL;
 			novopai->mae=NULL;
-			novopai->graupart = root->graupart+1;
+			novopai->graupart = root->graupart+2;
 		
 			struct arvore *novamae=(struct arvore*)malloc(sizeof(struct arvore)); // insere a nova mae; como parente de membro 1
 			passandostring(membro3,novamae->unidade);
 			root->mae = novamae;
 			novamae->pai=NULL;
 			novamae->mae=NULL;
-			novamae->graupart = root->graupart+1;
+			novamae->graupart = root->graupart+2;
 			
 			printf("\nEssa Tupla foi inserida com sucesso!\n\n");
 		}else{	

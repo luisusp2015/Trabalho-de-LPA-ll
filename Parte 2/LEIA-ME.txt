@@ -54,3 +54,36 @@ void passandostring(char*copiardaqui,char *colaraki);//prototipo da funçção que 
 
 int retornagrau(struct arvore * no,char*membro);
 	Essa função fica encarregada de retornau qual o valor de "graupart" dos membros inseridos, o grau de parentesco entre os membros será a diferença entre os valores de "graupart";	
+
+
+
+
+
+
+EXEMPLO DE FUNCIONAMENTO
+
+1- primeiro ele irá selecionar a opção inserção:nº"1";
+2- O usuário irá entrar com 2 Tuplas ;Digitando "2" para a quantidade;
+3- O usuário irá entra  primeiro com o valor dos 3 que serão armazenados , esse valor será a raiz: eu pai mae;
+4- O usuário  irá entra com os outros 3 valores a serem armazenados , separando-os por espaço:" pai avo avoh ";
+5- O programa irá exibir uma mensagem de exito da operação e mais 4 opções de ação:
+
+
+
+
+2º- Exibindo os antepassados:
+O usuário irá digitar o nome  do membro que deseja vizualizar os antepassados:eu;
+O programa irá imprimir :"Pai mae avo avoh são os antepassados";
+
+3º - Exibindo por geração:geração 1 = geração do primeiro membro;
+O usuário entra com  geração a ser impressa :2
+o programa irá imprimir : pai mae pertencem a essa geração ;
+
+4º - Imprimindo o grau de parentesco:
+O usuário entra com um par de nome que deseja saber o grau de parentesco entre eles e o programa retorna esse valor;
+"pai eu"  -->"O grau de parentesco entre eu e pai eh 1";
+
+5º - Imprimindo em Labelled Bracketing;
+o programa irá imprimir:
+
+[eu[mae[][]][pai[avo[][]][avoh[][]]]
